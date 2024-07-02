@@ -1,5 +1,5 @@
 
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { StyleSheet } from 'react-native';
@@ -21,23 +21,25 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.carouselContainer}>
-        <Image style={styles.image} source={images[current]} />
-        <View style={styles.dots}>
-          {images.map((_, index) => (
-            <View key={index} style={current === index ? styles.currentDot : styles.dot} />
-          ))}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.carouselContainer}>
+          <Image style={styles.image} source={images[current]} />
+          <View style={styles.dots}>
+            {images.map((_, index) => (
+              <View key={index} style={current === index ? styles.currentDot : styles.dot} />
+            ))}
+          </View>
         </View>
-      </View>
-      <View style={styles.content}>
-        <Text style={styles.title}>Datos sorprendentes</Text>
-        <Text style={styles.text}>
-          El océano contiene más artefactos históricos que todos los museos del mundo combinados.
-        </Text>
-        <Text style={styles.text}>
-          ¿Sabías que Las tortugas marinas pueden contener la respiración bajo el agua durante más de cinco horas gracias a su lento metabolismo y su capacidad para absorber oxígeno a través de la piel?
-        </Text>
-      </View>
+        <View style={styles.content}>
+          <Text style={styles.title}>Datos sorprendentes</Text>
+          <Text style={styles.text}>
+            El océano contiene más artefactos históricos que todos los museos del mundo combinados.
+          </Text>
+          <Text style={styles.text}>
+            ¿Sabías que Las tortugas marinas pueden contener la respiración bajo el agua durante más de cinco horas gracias a su lento metabolismo y su capacidad para absorber oxígeno a través de la piel?
+          </Text>
+        </View>
+      </ScrollView>
       <Navbar />
     </View>
   );
@@ -47,7 +49,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    overflow: 'scroll'
+  },
+  scrollContainer: {
+    flexGrow: 1,
   },
   carouselContainer: {
     marginBottom: 20,
@@ -91,5 +95,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
   },
+  navbar: {
+    backgroundColor: '#000',
+  }
 });
 
