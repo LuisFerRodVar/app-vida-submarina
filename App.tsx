@@ -16,16 +16,16 @@ export default function App() {
   return (
    <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
         <Stack.Screen name="Recovery" component={Recovery} options={{headerShown:false}}/>
         <Stack.Screen name="RecoveryAux" component={RecoveryAux} options={{headerShown:false}}/>
-        <Stack.Screen name="Configurations" component={Configurations} options={{headerShown:false}}/>
-        <Stack.Screen name="Donations" component={Donations} options={{headerShown:false}}/>
-        <Stack.Screen name="News" component={News} options={{headerShown:false}}/>
-        <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
-        <Stack.Screen name="Species" component={Species} options={{headerShown:false}}/>
+        <Stack.Screen name="Configurations" component={Configurations} />
+        <Stack.Screen name="Donations" component={Donations} />
+        <Stack.Screen name="News" component={News} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Species" component={Species} />
       </Stack.Navigator>
    </NavigationContainer>
   );
