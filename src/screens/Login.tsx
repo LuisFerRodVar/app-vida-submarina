@@ -2,7 +2,12 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { login } from '../api/users'
-export default function Login() {
+import { NavigationProp } from '@react-navigation/native'
+
+type Props = {
+  navigation: NavigationProp<any, any>
+}
+export default function Login({navigation}: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = () => {
@@ -19,6 +24,9 @@ export default function Login() {
       <TextInput placeholder='Contraseña' onChangeText={setPassword} />
       <TouchableOpacity onPress={handleLogin}>
         <Text>Iniciar sesión</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <Text>Registrarse</Text>
       </TouchableOpacity>
     </View>
   )
