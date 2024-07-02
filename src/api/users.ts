@@ -19,11 +19,11 @@ export async function login(username: string, password: string) {
     return await response.text();
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
-    throw error;
+    return null;
   }
 }
 export async function register(username: string, password: string, email: string) {
-  let data = {email: email, password: password, username: username, email_2: email};
+  let data = {email: email, password: password, username: username, email_2: ""};
   
   try {
     const response = await fetch(URL + 'users', {

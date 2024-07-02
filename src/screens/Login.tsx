@@ -12,7 +12,13 @@ export default function Login({navigation}: Props) {
   const [password, setPassword] = useState('');
   const handleLogin = () => {
     login(username, password).then(data => {
-      alert(data);
+      if (data == null) {
+        alert('Error al iniciar sesión');
+      }
+      else {
+        alert('Sesión iniciada');
+        navigation.navigate('Home');
+      }
     });
   }
 
