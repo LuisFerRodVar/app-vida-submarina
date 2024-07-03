@@ -4,10 +4,31 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
+
+const styles = StyleSheet.create({
+  navbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+    backgroundColor: 'white',
+    borderTopWidth: 1,
+    borderTopColor: 'lightgray',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  navbarContainer: {
+    borderTopWidth: 1,
+    borderTopColor: 'lightgray',
+  },
+});
+
 export default function Navbar() {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <View style={styles.navbarContainer}>
       <View style={styles.navbar}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <MaterialIcons name='home' size={24} color='black' />
@@ -26,26 +47,6 @@ export default function Navbar() {
         </TouchableOpacity>
       </View>
     </View>
-  )
+  );
 }
-const styles = StyleSheet.create({
-  navbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
-    backgroundColor: 'white',
-    borderTopWidth: 1,
-    borderTopColor: 'lightgray',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  container: {
-    height: '95%',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
 
-})

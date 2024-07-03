@@ -1,8 +1,6 @@
-
-import { View, Text, Image, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import Navbar from '../components/Navbar';
-import { StyleSheet } from 'react-native';
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
@@ -14,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prevCurrent) => (prevCurrent + 1) % images.length);
+      setCurrent(prevCurrent => (prevCurrent + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
@@ -36,7 +34,7 @@ export default function Home() {
             El océano contiene más artefactos históricos que todos los museos del mundo combinados.
           </Text>
           <Text style={styles.text}>
-            ¿Sabías que Las tortugas marinas pueden contener la respiración bajo el agua durante más de cinco horas gracias a su lento metabolismo y su capacidad para absorber oxígeno a través de la piel?
+            Las tortugas marinas pueden contener la respiración bajo el agua durante más de cinco horas gracias a su lento metabolismo y su capacidad para absorber oxígeno a través de la piel.
           </Text>
         </View>
       </ScrollView>
@@ -52,12 +50,13 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
+    paddingBottom: 80, // Ajusta este valor según la altura del Navbar
   },
   carouselContainer: {
     marginBottom: 20,
   },
   image: {
-    margin: 'auto',
+    alignSelf: 'center',
     marginTop: 30,
     width: '90%',
     height: 200,
@@ -73,30 +72,17 @@ const styles = StyleSheet.create({
     height: 10,
     width: 10,
     backgroundColor: '#595959',
-    margin: 8,
+    marginHorizontal: 5,
     borderRadius: 5,
   },
   currentDot: {
     height: 10,
     width: 10,
     backgroundColor: '#fff',
-    margin: 8,
+    marginHorizontal: 5,
     borderRadius: 5,
   },
   content: {
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  text: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  navbar: {
-    backgroundColor: '#000',
-  }
 });
-
