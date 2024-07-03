@@ -1,8 +1,12 @@
 
 import React from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { NavigationProp } from '@react-navigation/native'
 
-export default function Recovery() {
+type Props = {
+  navigation: NavigationProp<any, any>
+}
+export default function Recovery({navigation}: Props) {
   return (
     <ImageBackground source={require('../../assets/background.jpeg')} style={styles.backgroundImage}>
       <View style={styles.container}>
@@ -14,7 +18,7 @@ export default function Recovery() {
         <Text style={styles.text}>Escribe una cuenta de correo electrónico para recuperar tu cuenta</Text>
         <TextInput style={styles.input} placeholder='email@domain.com' />
         <Text style={styles.text}>Recibirás un correo con instrucciones para recuperar tu cuenta</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() =>navigation.navigate('RecoveryAux')}>
           <Text style={styles.buttonText}>Enviar</Text>
         </TouchableOpacity>
       </View>
