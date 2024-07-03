@@ -29,11 +29,11 @@ export default function Home() {
           </View>
         </View>
         <View style={styles.content}>
-          <Text style={styles.title}>Datos sorprendentes</Text>
-          <Text style={styles.text}>
+          <Text style={styles.titled}>Datos sorprendentes</Text>
+          <Text >
             El océano contiene más artefactos históricos que todos los museos del mundo combinados.
           </Text>
-          <Text style={styles.text}>
+          <Text >
             Las tortugas marinas pueden contener la respiración bajo el agua durante más de cinco horas gracias a su lento metabolismo y su capacidad para absorber oxígeno a través de la piel.
           </Text>
         </View>
@@ -50,7 +50,12 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    paddingBottom: 80, // Ajusta este valor según la altura del Navbar
+    paddingBottom: 80,
+  },
+  titled: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
   carouselContainer: {
     marginBottom: 20,
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
     width: '90%',
-    height: 200,
+    height: '80%',
     borderRadius: 10,
   },
   dots: {
