@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -25,25 +25,30 @@ const styles = StyleSheet.create({
 });
 
 export default function Navbar() {
+  const [currentDir, setCurrrentDir] = useState('Home');
   const navigation = useNavigation();
 
+  const toggleDir = (dir: string) => {
+    navigation.navigate(dir);
+    setCurrrentDir(dir);
+  }
   return (
     <View style={styles.navbarContainer}>
       <View style={styles.navbar}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <MaterialIcons name='home' size={24} color='black' />
+        <TouchableOpacity onPress={() => toggleDir('Home')}>
+          <MaterialIcons name='home' size={24} color='#0277BD' />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("News")} >
-          <MaterialIcons name='newspaper' size={24} color='black' />
+        <TouchableOpacity onPress={() => toggleDir('News')} >
+          <MaterialIcons name='newspaper' size={24} color='#0277BD' />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Species")} >
-          <MaterialIcons name='waves' size={24} color='black' />
+        <TouchableOpacity onPress={() => toggleDir('Species')} >
+          <MaterialIcons name='waves' size={24} color='#0277BD' />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Donations")} >
-          <MaterialIcons name='savings' size={24} color='black' />
+        <TouchableOpacity onPress={() => toggleDir('Donations')} >
+          <MaterialIcons name='savings' size={24} color='#0277BD' />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Configurations")} >
-          <MaterialIcons name='menu' size={24} color='black' />
+        <TouchableOpacity onPress={() => toggleDir('Configurations')} >
+          <MaterialIcons name='menu' size={24} color='#0277BD' />
         </TouchableOpacity>
       </View>
     </View>
