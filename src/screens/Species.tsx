@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native';
 import Navbar from '../components/Navbar';
 import { getSpecies } from '../api/species';
 
@@ -30,11 +30,11 @@ export default function Species() {
   }, []);
 
   const toggleFamily = (index: number) => {
-    setCurrentFamily(index);
-    setFilteredSpecies(species.filter((specie) => specie.group === currentFamily))
-  };
-
    
+
+    setCurrentFamily(index);
+    setFilteredSpecies(species.filter((specie) => specie.group == index));
+  };
 
   return (
     <View style={Styles.background}>
@@ -55,13 +55,12 @@ export default function Species() {
           </Text>
         </TouchableOpacity>
       </View>
-      <ScrollView>
+      <ScrollView style={Styles.container}>
         {filteredSpecies.map((specie, index) => (
           <View key={index}>
-            <Text>{specie.name}</Text>
-            <Text>{specie.description}</Text>
-            <Text>{specie.thumbnail}</Text>
-            <Text>{specie.group}</Text>
+            <Text style={Styles.title}>{specie.name}</Text>
+            <Text style={Styles.description}>{specie.description}</Text>
+            <Image source={{ uri: specie.thumbnail }} style={Styles.thumbnail} />
           </View>
         ))}
       </ScrollView>
@@ -87,5 +86,22 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
   },
+  title:{
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  description:{
+    fontSize: 14,
+    color: '#00000080',
+  },
+  thumbnail: {
+    width: '98%',
+    height: 150,
+    borderRadius: 10,
+  },
+  container: {
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+  }
 });
 

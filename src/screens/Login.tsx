@@ -16,7 +16,6 @@ export default function Login({ navigation }: Props) {
         alert('Error al iniciar sesión');
       }
       else {
-        alert('Sesión iniciada');
         navigation.navigate('Home');
       }
     });
