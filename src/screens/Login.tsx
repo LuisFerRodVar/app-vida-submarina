@@ -1,25 +1,33 @@
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native'
-import React, { useState } from 'react'
-import { StyleSheet } from 'react-native'
-import { login } from '../api/users'
-import { NavigationProp } from '@react-navigation/native'
+
+import { View, Text, TextInput, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { login } from '../api/users';
+import { NavigationProp } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = {
-  navigation: NavigationProp<any, any>
-}
+  navigation: NavigationProp<any, any>;
+};
+
 export default function Login({ navigation }: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const handleLogin = () => {
-    login(username, password).then(data => {
+
+  const handleLogin = async () => {
+    try {
+      const data = await login(username, password);
       if (data == null) {
         alert('Error al iniciar sesión');
-      }
-      else {
+      } else {
+        await AsyncStorage.setItem('user', data);
+        alert(data +  ' ha iniciado sesión');
         navigation.navigate('Home');
       }
-    });
-  }
+    } catch (error) {
+      alert('Error al iniciar sesión');
+    }
+  };
 
   return (
     <ImageBackground source={require('../../assets/background.jpeg')} style={Styles.backgroundImage}>
@@ -28,11 +36,11 @@ export default function Login({ navigation }: Props) {
         <Text style={Styles.subtitle}>Iniciar sesión</Text>
         <Image style={{ width: 125, height: 125, alignSelf: 'center' }} source={require('../../assets/logo.png')} />
         <Text style={Styles.text}>Digita tu email para iniciar sesión</Text>
-        <TextInput style={Styles.input}  placeholder='Correo electrónico' onChangeText={setUsername} />
+        <TextInput style={Styles.input} placeholder='Correo electrónico' onChangeText={setUsername} />
         <Text style={Styles.text}>Digita tu contraseña</Text>
-        <TextInput style={Styles.input} placeholder='Contraseña' onChangeText={setPassword} />
+        <TextInput style={Styles.input} placeholder='Contraseña' onChangeText={setPassword} secureTextEntry />
         <TouchableOpacity onPress={() => navigation.navigate('Recovery')}>
-          <Text style={Styles.tiny}>¿Olvidaste tu contraseña?</Text> 
+          <Text style={Styles.tiny}>¿Olvidaste tu contraseña?</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLogin}>
           <Text style={Styles.button}>Iniciar sesión</Text>
@@ -42,7 +50,7 @@ export default function Login({ navigation }: Props) {
         </TouchableOpacity>
       </View>
     </ImageBackground>
-  )
+  );
 }
 
 const Styles = StyleSheet.create({
@@ -59,15 +67,15 @@ const Styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 20
+    margin: 20,
   },
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 20
+    margin: 20,
   },
-  text:{
+  text: {
     padding: 10,
     color: '#828282',
   },
@@ -79,7 +87,7 @@ const Styles = StyleSheet.create({
   },
   tiny: {
     textAlign: 'right',
-    color: '#828282'
+    color: '#828282',
   },
   button: {
     backgroundColor: '#0277BD',
@@ -88,6 +96,6 @@ const Styles = StyleSheet.create({
     margin: 10,
     textAlign: 'center',
     borderRadius: 5,
-  }
+  },
 });
 

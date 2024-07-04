@@ -45,4 +45,25 @@ export async function register(username: string, password: string, email: string
     throw error;
   }
 }
+export async function modify(_id: string, username: string, email:string, email_2:string, password: string){
+  let data = {_id:_id, email: email, password: password, username: username, email_2: email_2};
+  try {
+    const response = await fetch(URL + 'users', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Network response was not ok: ${response.status} ${response.statusText}. Server response: ${errorText}`);
+    }
+
+    return await response.text();
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    throw error;
+  }
+}
